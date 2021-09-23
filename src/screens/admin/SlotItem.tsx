@@ -3,14 +3,14 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {DateAndTimePicker, Switch} from '../shared';
 import React from 'react';
 import {COLORS} from '../../utils/theme';
-import {AvailableTimeSlotInput, ShotInput} from '../../API';
+import {AvailableTimeSlotInput} from '../../API';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 type SlotItemType = {
   slot: AvailableTimeSlotInput;
   id: number;
   slots: AvailableTimeSlotInput[];
-  setSlots: (slot: ShotInput[]) => void;
+  setSlots: (slot: AvailableTimeSlotInput[]) => void;
   showValidationError?: boolean;
 };
 
@@ -108,7 +108,7 @@ const SlotItem = ({
           </View>
           <View>
             <Switch
-              initialState={slot.available}
+              initialState={slot.available!}
               onChange={() => handleAvailable()}
             />
           </View>

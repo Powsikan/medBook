@@ -1,0 +1,19 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group",
+    "custom"
+  ],
+  "parentResource": "medbook4fd6c92a4fd6c92a",
+  "functionName": "medbook4fd6c92a4fd6c92aPostConfirmation",
+  "resourceName": "medbook4fd6c92a4fd6c92aPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "C:\\Users\\POWSIKAN\\AppData\\Roaming\\npm\\node_modules\\@aws-amplify\\cli\\node_modules\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "medbook4fd6c92a4fd6c92aPostConfirmation",
+  "skipEdit": true,
+  "GROUP": "User",
+  "enableCors": false
+}

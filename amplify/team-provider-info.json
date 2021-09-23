@@ -1,0 +1,27 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-medbook-dev-90625-authRole",
+      "UnauthRoleArn": "arn:aws:iam::125259285379:role/amplify-medbook-dev-90625-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::125259285379:role/amplify-medbook-dev-90625-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-medbook-dev-90625-deployment",
+      "UnauthRoleName": "amplify-medbook-dev-90625-unauthRole",
+      "StackName": "amplify-medbook-dev-90625",
+      "StackId": "arn:aws:cloudformation:ap-south-1:125259285379:stack/amplify-medbook-dev-90625/725352f0-1c1f-11ec-b938-02f6109732e0",
+      "AmplifyAppId": "d2o82rshd0lh76"
+    },
+    "categories": {
+      "function": {
+        "medbook4fd6c92a4fd6c92aPostConfirmation": {
+          "GROUP": "User",
+          "deploymentBucketName": "amplify-medbook-dev-90625-deployment",
+          "s3Key": "amplify-builds/medbook4fd6c92a4fd6c92aPostConfirmation-536c50774a5066376258-build.zip"
+        }
+      },
+      "auth": {
+        "medbook4fd6c92a4fd6c92a": {}
+      }
+    }
+  }
+}

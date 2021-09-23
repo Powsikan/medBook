@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "medbook",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authmedbook4fd6c92a4fd6c92a",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
