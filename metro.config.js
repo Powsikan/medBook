@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /**
  * Metro configuration for React Native
  * https://github.com/facebook/react-native
@@ -6,11 +7,14 @@
  */
 
 module.exports = {
+  resolver: {
+    blacklistRE: [/#current-cloud-backend\/.*/],
+  },
   transformer: {
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
-        inlineRequires: true,
+        inlineRequires: false,
       },
     }),
   },

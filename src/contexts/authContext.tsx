@@ -200,7 +200,7 @@ const AuthProvider: React.FC<React.ReactNode> = ({children}) => {
         .catch(err => {
           console.log(err);
           setIsLoading(false);
-          navigate('PublicHome');
+          navigate('SignIn');
         });
     } catch (error) {
       setIsLoading(false);

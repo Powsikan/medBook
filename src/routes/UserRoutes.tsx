@@ -13,8 +13,8 @@ import {TabBarIcon} from '../screens/shared';
 import {ScreenProp} from '../type';
 import UserBookingConfirmation from '../screens/users/UserBookingConfirm';
 import UserBookingOptions from '../screens/users/UserBookingOptions';
-import PastBooking from '../screens/users/bookings/PastBookings';
-import OngoingBooking from '../screens/users/bookings/OngoingBookings';
+import PastBookings from '../screens/users/bookings/PastBookings';
+import OnGoingBookings from '../screens/users/bookings/OnGoingBookings';
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -63,12 +63,12 @@ const UserBookingTab = () => {
       <TopTab.Screen
         options={{title: 'Ongoing'}}
         name="OngoingBooking"
-        component={OngoingBooking}
+        component={OnGoingBookings}
       />
       <TopTab.Screen
         options={{title: 'Past'}}
         name="PastBooking"
-        component={PastBooking}
+        component={PastBookings}
       />
     </TopTab.Navigator>
   );
