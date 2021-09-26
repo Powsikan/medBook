@@ -2813,6 +2813,15 @@
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.4.tgz"
   "version" "15.7.4"
 
+"@types/react-native-calendars@^1.1264.2":
+  "integrity" "sha512-nsNwzqF7s4FzNtxSG4Rcr3FQ9qOdZUJcrXKo7aCEgvR9QmU5K09QhobR+PTe93opB4a1ldvLmsFGTiOAYeeaBg=="
+  "resolved" "https://registry.npmjs.org/@types/react-native-calendars/-/react-native-calendars-1.1264.2.tgz"
+  "version" "1.1264.2"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+    "@types/xdate" "*"
+
 "@types/react-native-vector-icons@^6.4.9":
   "integrity" "sha512-hQyAhuGKZtu2Je+K+bAmLw8MGT2TmQ6rVl0fGbM198FdrPDAqb3LMF0gxQOzlBOKJDAZj9MaDyKdPSHCVvJCdw=="
   "resolved" "https://registry.npmjs.org/@types/react-native-vector-icons/-/react-native-vector-icons-6.4.9.tgz"
@@ -2853,6 +2862,11 @@
   "integrity" "sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw=="
   "resolved" "https://registry.npmjs.org/@types/stack-utils/-/stack-utils-2.0.1.tgz"
   "version" "2.0.1"
+
+"@types/xdate@*":
+  "integrity" "sha512-giM6hmU4ZCCAQj8BVSMNMA8hQwvKuWewLIe7r+G5NtGvehqW9jXdF/V6CzzkQYgHsk+67/udxql3RdfR8zqSNA=="
+  "resolved" "https://registry.npmjs.org/@types/xdate/-/xdate-0.8.32.tgz"
+  "version" "0.8.32"
 
 "@types/yargs-parser@*":
   "integrity" "sha512-7tFImggNeNBVMsn0vLrpn1H1uPrUBdnARPTpZoitY37ZrdJREzf7I16tMrlK3hen349gr1NYh8CmZQa7CTG6Aw=="
@@ -7908,7 +7922,7 @@
   "resolved" "https://registry.npmjs.org/react-native-animated-header/-/react-native-animated-header-1.0.7.tgz"
   "version" "1.0.7"
 
-"react-native-calendars@1.1263.0":
+"react-native-calendars@^1.1263.0":
   "integrity" "sha512-O9Pl9YeV3SVeXoXnuxgf4itl+hhJceLu4cCvxX+rcI/2FgIDGD30R/cblxGmSXznbLGj9SZtuJDXmG9Bnd7TEA=="
   "resolved" "https://registry.npmjs.org/react-native-calendars/-/react-native-calendars-1.1263.0.tgz"
   "version" "1.1263.0"

@@ -1,26 +1,52 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {AvailableTimeSlotInput, CreateServiceInput, Service} from '../../API';
+import {ServiceContext} from '../../contexts';
+import {ScreenProp} from '../../type';
 import {COLORS} from '../../utils/theme';
 import {Button, Container, FormInputText, Icon} from '../shared';
-
 import SlotItem from './SlotItem';
 
-const AddService = () => {
+const AddService = ({navigation}: ScreenProp) => {
   const [doctorName, setDoctorName] = useState('');
   const [serviceType, setServiceType] = useState('');
   const [serviceCharge, setServiceCharge] = useState('');
-  const [slots, setSlots] = useState<{}[]>([
+  const [slots, setSlots] = useState<AvailableTimeSlotInput[]>([
     {available: true, from: '', to: ''},
   ]);
 
+  const {onCreateService} = useContext(ServiceContext);
+
   const addSlot = () => {
-    console.log;
+    const emptyBoxes = slots.filter(
+      slot => slot?.from === '' || slot?.to === '',
+    );
+
+    const _slots = [...slots];
+    _slots.push({
+      available: true,
+      from: '',
+      to: '',
+    });
+    setSlots(_slots);
   };
 
-  const OnUpdate = () => {};
+  const onCreate = () => {
+    const newService: CreateServiceInput = {
+      doctorName: doctorName,
+      serviceType: serviceType,
+      serviceCharge: Number(serviceCharge),
+      slots: slots,
+      AvailableTimes: [],
+      status: true,
+    };
+    onCreateService(newService).then(res => {
+      navigation.goBack();
+    });
+  };
 
   return (
     <Container>
@@ -41,9 +67,11 @@ const AddService = () => {
         value={serviceCharge}
         placeHolder="Service Charge"
         label="Service Charge"
+        keyboardType={'decimal-pad'}
       />
+      <Text>Slots</Text>
       <ScrollView>
-        <View>
+        <View style={styles.slotView}>
           {slots &&
             slots.map((obj, key) => {
               return (
@@ -53,7 +81,6 @@ const AddService = () => {
                   id={key}
                   slots={slots}
                   setSlots={setSlots}
-                  showValidationError={showValidationError}
                 />
               );
             })}
@@ -67,11 +94,13 @@ const AddService = () => {
           </Button>
         </View>
       </ScrollView>
-      <Button onPress={OnUpdate}>Update</Button>
+      <Button onPress={onCreate}>Create</Button>
     </Container>
   );
 };
 
 export default AddService;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  slotView: {},
+});

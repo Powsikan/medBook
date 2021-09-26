@@ -11,16 +11,9 @@ type SlotItemType = {
   id: number;
   slots: AvailableTimeSlotInput[];
   setSlots: (slot: AvailableTimeSlotInput[]) => void;
-  showValidationError?: boolean;
 };
 
-const SlotItem = ({
-  slot,
-  id,
-  slots,
-  setSlots,
-  showValidationError,
-}: SlotItemType) => {
+const SlotItem = ({slot, id, slots, setSlots}: SlotItemType) => {
   const setFromTime = (time?: string) => {
     const _slots = [...slots];
     _slots[id]!.from = time!.split(' ')[0];
@@ -71,13 +64,6 @@ const SlotItem = ({
             label="From"
           />
         </View>
-        <View style={styles.validationView}>
-          <Text style={styles.validationError}>
-            {showValidationError && slot?.from?.split(' ')[0] === ''
-              ? 'Required'
-              : null}
-          </Text>
-        </View>
         <View style={styles.time}>
           <DateAndTimePicker
             mode="time"
@@ -94,13 +80,6 @@ const SlotItem = ({
             placeholder="Time"
             label="To"
           />
-        </View>
-        <View style={styles.validationView}>
-          <Text style={styles.validationError}>
-            {showValidationError && slot?.to?.split(' ')[0] === ''
-              ? 'Required'
-              : null}
-          </Text>
         </View>
         <View style={styles.switchView}>
           <View>
