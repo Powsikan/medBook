@@ -1,5 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable prettier/prettier */
+import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -28,6 +29,7 @@ const AdminRoutes = () => {
         inactiveBackgroundColor: `${COLORS.white}10`,
         activeTintColor: COLORS.black,
         inactiveTintColor: `${COLORS.black}70`,
+        keyboardHidesTabBar: true,
       }}>
       <BottomTab.Screen
         name="AdminHome"

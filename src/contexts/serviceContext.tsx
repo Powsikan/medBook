@@ -19,7 +19,7 @@ import {Toast} from 'native-base';
 
 type ServiceContextType = {
   onGetServices: (variables: ListServicesQueryVariables) => Promise<{
-    Services: Service[];
+    services: Service[];
     nextToken: string | null | undefined;
   }>;
   onGetService: (id: string) => Promise<Service>;
@@ -37,7 +37,7 @@ const ServiceProvider: React.FC<React.ReactNode> = ({children}) => {
   const onGetServices = async (
     variables: ListServicesQueryVariables,
   ): Promise<{
-    Services: Service[];
+    services: Service[];
     nextToken: string | null | undefined;
   }> => {
     setIsLoading(true);
@@ -46,9 +46,9 @@ const ServiceProvider: React.FC<React.ReactNode> = ({children}) => {
         query: listServices,
         variables,
       })) as {data: ListServicesQuery};
-      const Services = _listServices.data.listServices?.items as Service[];
+      const services = _listServices.data.listServices?.items as Service[];
       setIsLoading(false);
-      return {Services, nextToken: _listServices.data.listServices?.nextToken};
+      return {services, nextToken: _listServices.data.listServices?.nextToken};
     } catch (e) {
       console.error(e);
       setIsLoading(false);
@@ -58,11 +58,11 @@ const ServiceProvider: React.FC<React.ReactNode> = ({children}) => {
 
   const onGetService = async (id: string): Promise<Service> => {
     try {
-      const Service = (await GraphQLAPI.graphql({
+      const service = (await GraphQLAPI.graphql({
         query: getService,
         variables: {id: id},
       })) as {data: GetServiceQuery};
-      return Service.data.getService as Service;
+      return service.data.getService as Service;
     } catch (e) {
       console.error(e);
       throw e;
@@ -89,12 +89,12 @@ const ServiceProvider: React.FC<React.ReactNode> = ({children}) => {
   ): Promise<Service> => {
     try {
       prepareForUpdate(updateServiceInput);
-      const Service = (await GraphQLAPI.graphql({
+      const service = (await GraphQLAPI.graphql({
         query: updateService,
         variables: {input: updateServiceInput},
       })) as {data: UpdateServiceMutation};
       Toast.show({text: 'Service updated successfully', type: 'success'});
-      return Service.data.updateService as Service;
+      return service.data.updateService as Service;
     } catch (e) {
       console.error(e);
       throw e;

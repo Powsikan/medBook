@@ -15,7 +15,7 @@ type AuthContextType = {
     username: string,
     password: string,
     fullName: string,
-    email: string,
+    phone_number: string,
     gender: string,
   ) => Promise<boolean>;
   confirmSignUp: (username: string, authCode: string) => Promise<boolean>;
@@ -60,7 +60,7 @@ const AuthProvider: React.FC<React.ReactNode> = ({children}) => {
     try {
       await Auth.signOut();
       setCurrentUser(undefined);
-      navigate('PublicHome');
+      navigate('SignIn');
       console.debug('logout successfully');
       return true;
     } catch (error) {
@@ -96,7 +96,7 @@ const AuthProvider: React.FC<React.ReactNode> = ({children}) => {
     username: string,
     password: string,
     fullName: string,
-    email: string,
+    phone_number: string,
     gender: string,
   ): Promise<boolean> => {
     setIsLoading(true);
@@ -104,7 +104,7 @@ const AuthProvider: React.FC<React.ReactNode> = ({children}) => {
       await Auth.signUp({
         username,
         password,
-        attributes: {email: email, gender, name: fullName},
+        attributes: {email: username, phone_number, gender, name: fullName},
       });
       setIsLoading(false);
       console.debug('✅ Sign-up Confirmed');
