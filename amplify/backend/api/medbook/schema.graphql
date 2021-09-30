@@ -10,7 +10,7 @@ type Service
     rules: [
       {allow: owner}
       {allow: groups, groups: ["Admin"]}
-      {allow: private, operations: [read]}
+      {allow: private, operations: [read, update]}
     ]
   ) {
   id: ID!

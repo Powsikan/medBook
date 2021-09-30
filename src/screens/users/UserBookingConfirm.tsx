@@ -1,8 +1,12 @@
 /* eslint-disable prettier/prettier */
+import { log } from 'console';
 import React, {useContext, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {CreateBookingInput, Service, UpdateServiceInput} from '../../API';
+import {AuthContext, ServiceContext} from '../../contexts';
 import {BookingContext} from '../../contexts/BookingContext';
 import {ScreenProp} from '../../type';
+import {refNoGenerator} from '../../utils/refNoGenerator';
 import {COLORS} from '../../utils/theme';
 import BookingConfirmationItem from '../common/components/BookingConfirmationItem';
 import {Container, Button} from '../shared';
@@ -11,9 +15,36 @@ const UserBookingConfirm = ({navigation, route}: ScreenProp) => {
   const {service, selectedDate, selectedSlotTime} = route?.params;
 
   const {onCreateBooking} = useContext(BookingContext);
+  const {onUpdateService} = useContext(ServiceContext);
+  const {currentUser} = useContext(AuthContext);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  const onBooking = () => {};
+  const onBooking = () => {
+    setButtonDisabled(true);
+    const newBooking: CreateBookingInput = {
+      refNo: refNoGenerator(),
+      userId: currentUser?.attributes?.sub,
+      serviceId: service.id,
+      serviceName: service.name,
+      date: `${new Date().getUTCFullYear()}-${selectedDate.month}-${
+        selectedDate.date
+      }`,
+      slot: selectedSlotTime,
+      bookingCharge: service.serviceCharge,
+      status: 'CREATED',
+    };
+    onCreateBooking(newBooking)
+      .then(res => {
+        const _service: UpdateServiceInput = service;
+        _service.slots?.map(slot => {
+          if (slot == selectedSlotTime) {
+            slot!.available = false;
+          }
+        });
+        onUpdateService(_service).then(res => setButtonDisabled(false));
+      })
+      .catch(e => setButtonDisabled(false));
+  };
 
   return (
     <Container>

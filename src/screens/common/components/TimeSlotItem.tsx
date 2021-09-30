@@ -83,18 +83,7 @@ const TimeSlotItem = ({
             {serviceTime}
           </Text>
         </View>
-        <View
-          style={[
-            styles.availableServiceView,
-            {
-              backgroundColor:
-                selectedTime != undefined && selectedTime == slot
-                  ? COLORS.white
-                  : COLORS.gray,
-            },
-          ]}>
-          {/* <Text>{availableSlot}</Text> */}
-        </View>
+
         {serviceAvailable !== undefined && (
           <View style={styles.switch}>
             <Switch initialState={serviceAvailable} onChange={switchUpdate} />
@@ -122,6 +111,8 @@ const styles = StyleSheet.create({
   TimeView: {
     flex: 8,
     paddingLeft: 30,
+    alignItems: 'center',
+    marginEnd: 30,
   },
   availableServiceView: {
     flex: 1,

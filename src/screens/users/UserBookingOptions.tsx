@@ -30,7 +30,9 @@ const UserBookingOptions = ({navigation, route}: ScreenProp) => {
     await onGetService(service.id)
       .then(res => {
         setShowEmpty(true);
-        setScheduledDates(res.AvailableTimes);
+        setScheduledDates(
+          res.AvailableTimes?.filter(date => new Date(date) > new Date()),
+        );
         setSelectedDate({
           date: res.AvailableTimes.filter(date => date !== null)[0].split(
             '-',
