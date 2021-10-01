@@ -50,26 +50,28 @@ const UserBookingOptions = ({navigation, route}: ScreenProp) => {
       <View style={styles.serviceNameView}>
         <Text style={styles.serviceNameText}>{service.doctorName}</Text>
       </View>
-      <View style={styles.bookingOption}>
-        <ScheduleBookingOption
-          selectedDate={selectedDate.date}
-          setSelectedDate={setSelectedDate}
-          selectedSlotTime={selectedSlotTime}
-          setSelectedSlotTime={setSelectedSlotTime}
-          availableDays={scheduledDates
-            .filter(date => date !== null)
-            .map(sDate => {
-              return {
-                date: sDate.split('-')[2],
-                month: sDate.split('-')[1],
-              };
-            })}
-          availableTimeSlots={service.slots}
-        />
-      </View>
-      {showEmpty && scheduledDates.length === 0 && (
+
+      {showEmpty && scheduledDates.length === 0 ? (
         <View style={styles.emptyView}>
           <Text style={styles.emptyText}>Service Not Available</Text>
+        </View>
+      ) : (
+        <View style={styles.bookingOption}>
+          <ScheduleBookingOption
+            selectedDate={selectedDate.date}
+            setSelectedDate={setSelectedDate}
+            selectedSlotTime={selectedSlotTime}
+            setSelectedSlotTime={setSelectedSlotTime}
+            availableDays={scheduledDates
+              .filter(date => date !== null)
+              .map(sDate => {
+                return {
+                  date: sDate.split('-')[2],
+                  month: sDate.split('-')[1],
+                };
+              })}
+            availableTimeSlots={service.slots}
+          />
         </View>
       )}
       {scheduledDates.length > 0 && (

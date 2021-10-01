@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { log } from 'console';
+import {log} from 'console';
 import React, {useContext, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {CreateBookingInput, Service, UpdateServiceInput} from '../../API';
@@ -25,7 +25,7 @@ const UserBookingConfirm = ({navigation, route}: ScreenProp) => {
       refNo: refNoGenerator(),
       userId: currentUser?.attributes?.sub,
       serviceId: service.id,
-      serviceName: service.name,
+      serviceName: service.doctorName,
       date: `${new Date().getUTCFullYear()}-${selectedDate.month}-${
         selectedDate.date
       }`,
@@ -33,6 +33,7 @@ const UserBookingConfirm = ({navigation, route}: ScreenProp) => {
       bookingCharge: service.serviceCharge,
       status: 'CREATED',
     };
+    console.log({newBooking});
     onCreateBooking(newBooking)
       .then(res => {
         const _service: UpdateServiceInput = service;

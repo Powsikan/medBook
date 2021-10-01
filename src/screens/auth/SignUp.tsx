@@ -94,5 +94,6 @@ const styles = StyleSheet.create({
   create: {
     marginLeft: 50,
     marginRight: 50,
+    width: '50%',
   },
 });

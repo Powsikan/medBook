@@ -35,6 +35,7 @@ const AdminRoutes = () => {
         name="AdminHome"
         component={HomeStackScreen}
         options={{
+          headerShown: false,
           title: 'Home',
           tabBarIcon: focused => TabBarIcon('home', focused),
         }}

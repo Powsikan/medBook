@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {useContext} from 'react';
 import {Platform, SafeAreaView, StatusBar, View} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 
 import SignInScreen from '../screens/auth/SignIn';
 import SignUpScreen from '../screens/auth/SignUp';
@@ -33,7 +33,13 @@ const Routes = (): JSX.Element => {
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="ConfirmSignUp" component={ConfirmSignUp} />
-          {currentUser && <Stack.Screen name="Home" component={RoleRoutes} />}
+          {currentUser && (
+            <Stack.Screen
+              name="Home"
+              component={RoleRoutes}
+              options={{headerShown: false}}
+            />
+          )}
         </Stack.Navigator>
         {(userIsLoading || authIsLoading || serviceLoding) && <Spinner />}
       </View>

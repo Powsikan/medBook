@@ -20,20 +20,20 @@ const BottomTab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
 
-const UserRoutes = (): JSX.Element => {
-  return (
-    <Stack.Navigator
-      initialRouteName="UserTabRoutes"
-      screenOptions={{headerShown: false}}>
-      <Stack.Screen
-        name="UserTabRoutes"
-        options={{title: 'home'}}
-        component={UserTabRoutes}
-      />
-    </Stack.Navigator>
-  );
-};
-export default UserRoutes;
+// const UserRoutes = (): JSX.Element => {
+//   return (
+//     <Stack.Navigator
+//       initialRouteName="UserTabRoutes"
+//       screenOptions={{headerShown: false}}>
+//       <Stack.Screen
+//         name="UserTabRoutes"
+//         options={{title: 'home'}}
+//         component={UserTabRoutes}
+//       />
+//     </Stack.Navigator>
+//   );
+// };
+// export default UserRoutes;
 
 function HomeStackScreen(): JSX.Element {
   return (
@@ -74,7 +74,7 @@ const UserBookingTab = () => {
   );
 };
 
-const UserTabRoutes = (props: ScreenProp): JSX.Element => {
+const UserRoutes = (props: ScreenProp): JSX.Element => {
   return (
     <>
       <BottomTab.Navigator
@@ -89,6 +89,7 @@ const UserTabRoutes = (props: ScreenProp): JSX.Element => {
           name="UserHome"
           component={HomeStackScreen}
           options={{
+            headerShown: false,
             title: 'Home',
             tabBarIcon: focused => TabBarIcon('home', focused),
           }}
@@ -114,3 +115,4 @@ const UserTabRoutes = (props: ScreenProp): JSX.Element => {
     </>
   );
 };
+export default UserRoutes;
