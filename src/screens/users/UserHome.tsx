@@ -24,7 +24,11 @@ const UserHome = ({navigation}: ScreenProp) => {
   };
   return (
     <Container>
-      <View style={{padding: 20}}></View>
+      <View style={{padding: 20}}>
+        <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+          Available Services
+        </Text>
+      </View>
       {services && (
         <FlatList<Service>
           numColumns={1}

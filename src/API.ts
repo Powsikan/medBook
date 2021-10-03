@@ -9,7 +9,7 @@ export type CreateServiceInput = {
   serviceCharge: number,
   status: boolean,
   slots?: Array< AvailableTimeSlotInput | null > | null,
-  AvailableTimes?: Array< string | null > | null,
+  AvailableTimes?: Array< AvailableTimeInput | null > | null,
 };
 
 export type AvailableTimeSlotInput = {
@@ -18,12 +18,16 @@ export type AvailableTimeSlotInput = {
   from?: string | null,
 };
 
+export type AvailableTimeInput = {
+  date?: string | null,
+  slots?: Array< AvailableTimeSlotInput | null > | null,
+};
+
 export type ModelServiceConditionInput = {
   doctorName?: ModelStringInput | null,
   serviceType?: ModelStringInput | null,
   serviceCharge?: ModelFloatInput | null,
   status?: ModelBooleanInput | null,
-  AvailableTimes?: ModelStringInput | null,
   and?: Array< ModelServiceConditionInput | null > | null,
   or?: Array< ModelServiceConditionInput | null > | null,
   not?: ModelServiceConditionInput | null,
@@ -96,7 +100,7 @@ export type Service = {
   serviceCharge: number,
   status: boolean,
   slots?:  Array<AvailableTimeSlot | null > | null,
-  AvailableTimes?: Array< string | null > | null,
+  AvailableTimes?:  Array<AvailableTime | null > | null,
   createdAt: string,
   updatedAt: string,
   owner?: string | null,
@@ -109,6 +113,12 @@ export type AvailableTimeSlot = {
   from?: string | null,
 };
 
+export type AvailableTime = {
+  __typename: "AvailableTime",
+  date?: string | null,
+  slots?:  Array<AvailableTimeSlot | null > | null,
+};
+
 export type UpdateServiceInput = {
   id: string,
   doctorName?: string | null,
@@ -116,7 +126,7 @@ export type UpdateServiceInput = {
   serviceCharge?: number | null,
   status?: boolean | null,
   slots?: Array< AvailableTimeSlotInput | null > | null,
-  AvailableTimes?: Array< string | null > | null,
+  AvailableTimes?: Array< AvailableTimeInput | null > | null,
 };
 
 export type DeleteServiceInput = {
@@ -251,7 +261,6 @@ export type ModelServiceFilterInput = {
   serviceType?: ModelStringInput | null,
   serviceCharge?: ModelFloatInput | null,
   status?: ModelBooleanInput | null,
-  AvailableTimes?: ModelStringInput | null,
   and?: Array< ModelServiceFilterInput | null > | null,
   or?: Array< ModelServiceFilterInput | null > | null,
   not?: ModelServiceFilterInput | null,
@@ -321,7 +330,16 @@ export type CreateServiceMutation = {
       to?: string | null,
       from?: string | null,
     } | null > | null,
-    AvailableTimes?: Array< string | null > | null,
+    AvailableTimes?:  Array< {
+      __typename: "AvailableTime",
+      date?: string | null,
+      slots?:  Array< {
+        __typename: "AvailableTimeSlot",
+        available?: boolean | null,
+        to?: string | null,
+        from?: string | null,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
@@ -347,7 +365,16 @@ export type UpdateServiceMutation = {
       to?: string | null,
       from?: string | null,
     } | null > | null,
-    AvailableTimes?: Array< string | null > | null,
+    AvailableTimes?:  Array< {
+      __typename: "AvailableTime",
+      date?: string | null,
+      slots?:  Array< {
+        __typename: "AvailableTimeSlot",
+        available?: boolean | null,
+        to?: string | null,
+        from?: string | null,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
@@ -373,7 +400,16 @@ export type DeleteServiceMutation = {
       to?: string | null,
       from?: string | null,
     } | null > | null,
-    AvailableTimes?: Array< string | null > | null,
+    AvailableTimes?:  Array< {
+      __typename: "AvailableTime",
+      date?: string | null,
+      slots?:  Array< {
+        __typename: "AvailableTimeSlot",
+        available?: boolean | null,
+        to?: string | null,
+        from?: string | null,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
@@ -542,7 +578,16 @@ export type GetServiceQuery = {
       to?: string | null,
       from?: string | null,
     } | null > | null,
-    AvailableTimes?: Array< string | null > | null,
+    AvailableTimes?:  Array< {
+      __typename: "AvailableTime",
+      date?: string | null,
+      slots?:  Array< {
+        __typename: "AvailableTimeSlot",
+        available?: boolean | null,
+        to?: string | null,
+        from?: string | null,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
@@ -571,7 +616,10 @@ export type ListServicesQuery = {
         to?: string | null,
         from?: string | null,
       } | null > | null,
-      AvailableTimes?: Array< string | null > | null,
+      AvailableTimes?:  Array< {
+        __typename: "AvailableTime",
+        date?: string | null,
+      } | null > | null,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -698,7 +746,16 @@ export type OnCreateServiceSubscription = {
       to?: string | null,
       from?: string | null,
     } | null > | null,
-    AvailableTimes?: Array< string | null > | null,
+    AvailableTimes?:  Array< {
+      __typename: "AvailableTime",
+      date?: string | null,
+      slots?:  Array< {
+        __typename: "AvailableTimeSlot",
+        available?: boolean | null,
+        to?: string | null,
+        from?: string | null,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
@@ -719,7 +776,16 @@ export type OnUpdateServiceSubscription = {
       to?: string | null,
       from?: string | null,
     } | null > | null,
-    AvailableTimes?: Array< string | null > | null,
+    AvailableTimes?:  Array< {
+      __typename: "AvailableTime",
+      date?: string | null,
+      slots?:  Array< {
+        __typename: "AvailableTimeSlot",
+        available?: boolean | null,
+        to?: string | null,
+        from?: string | null,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
@@ -740,7 +806,16 @@ export type OnDeleteServiceSubscription = {
       to?: string | null,
       from?: string | null,
     } | null > | null,
-    AvailableTimes?: Array< string | null > | null,
+    AvailableTimes?:  Array< {
+      __typename: "AvailableTime",
+      date?: string | null,
+      slots?:  Array< {
+        __typename: "AvailableTimeSlot",
+        available?: boolean | null,
+        to?: string | null,
+        from?: string | null,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,

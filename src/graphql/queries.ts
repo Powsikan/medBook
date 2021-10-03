@@ -15,7 +15,14 @@ export const getService = /* GraphQL */ `
         to
         from
       }
-      AvailableTimes
+      AvailableTimes {
+        date
+        slots {
+          available
+          to
+          from
+        }
+      }
       createdAt
       updatedAt
       owner
@@ -40,7 +47,9 @@ export const listServices = /* GraphQL */ `
           to
           from
         }
-        AvailableTimes
+        AvailableTimes {
+          date
+        }
         createdAt
         updatedAt
         owner

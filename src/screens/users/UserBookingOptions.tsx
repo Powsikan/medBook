@@ -31,7 +31,13 @@ const UserBookingOptions = ({navigation, route}: ScreenProp) => {
       .then(res => {
         setShowEmpty(true);
         setScheduledDates(
-          res.AvailableTimes?.filter(date => new Date(date) > new Date()),
+          res.AvailableTimes?.map(time => time?.date)
+            .filter(
+              date => new Date(date) >= new Date(new Date().toDateString()),
+            )
+            .sort(function (a, b) {
+              return new Date(a) - new Date(b);
+            }),
         );
         setSelectedDate({
           date: res.AvailableTimes.filter(date => date !== null)[0].split(
@@ -43,6 +49,24 @@ const UserBookingOptions = ({navigation, route}: ScreenProp) => {
         });
       })
       .catch(() => setShowEmpty(true));
+  };
+
+  const getAvailableTimeSlots = () => {
+    let slots = [];
+    service.AvailableTimes.filter(time => {
+      if (
+        time.date ===
+        `${new Date().getUTCFullYear()}-${selectedDate.month}-${
+          selectedDate.date
+        }`
+      ) {
+        console.log('time slots', time?.slots);
+        slots = time?.slots!.filter(slot => slot?.available! == true);
+        return slots;
+      }
+    });
+
+    return slots;
   };
 
   return (
@@ -70,7 +94,7 @@ const UserBookingOptions = ({navigation, route}: ScreenProp) => {
                   month: sDate.split('-')[1],
                 };
               })}
-            availableTimeSlots={service.slots}
+            availableTimeSlots={getAvailableTimeSlots()}
           />
         </View>
       )}

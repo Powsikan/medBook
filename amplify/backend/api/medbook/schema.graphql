@@ -4,6 +4,11 @@ type AvailableTimeSlot {
   from: AWSTime
 }
 
+type AvailableTime {
+  date: AWSDate
+  slots: [AvailableTimeSlot]
+}
+
 type Service
   @model
   @auth(
@@ -19,7 +24,7 @@ type Service
   serviceCharge: Float!
   status: Boolean!
   slots: [AvailableTimeSlot]
-  AvailableTimes: [AWSDate]
+  AvailableTimes: [AvailableTime]
 }
 
 type Booking

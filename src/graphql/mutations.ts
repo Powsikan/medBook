@@ -18,7 +18,14 @@ export const createService = /* GraphQL */ `
         to
         from
       }
-      AvailableTimes
+      AvailableTimes {
+        date
+        slots {
+          available
+          to
+          from
+        }
+      }
       createdAt
       updatedAt
       owner
@@ -41,7 +48,14 @@ export const updateService = /* GraphQL */ `
         to
         from
       }
-      AvailableTimes
+      AvailableTimes {
+        date
+        slots {
+          available
+          to
+          from
+        }
+      }
       createdAt
       updatedAt
       owner
@@ -64,7 +78,14 @@ export const deleteService = /* GraphQL */ `
         to
         from
       }
-      AvailableTimes
+      AvailableTimes {
+        date
+        slots {
+          available
+          to
+          from
+        }
+      }
       createdAt
       updatedAt
       owner

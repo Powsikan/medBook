@@ -4,6 +4,7 @@ export {ErrorMessage} from './ErrorMessage';
 export {TextInput} from './TextInput';
 export {TextInputLabel} from './TextInputLabel';
 export {Button} from './Button';
+export {TwoButtonAlert} from './Alert';
 export {Card} from './Card';
 export {Container} from './Container';
 export {TabBarIcon} from './TabBarIcon';

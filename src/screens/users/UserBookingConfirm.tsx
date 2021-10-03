@@ -37,12 +37,24 @@ const UserBookingConfirm = ({navigation, route}: ScreenProp) => {
     onCreateBooking(newBooking)
       .then(res => {
         const _service: UpdateServiceInput = service;
-        _service.slots?.map(slot => {
-          if (slot == selectedSlotTime) {
-            slot!.available = false;
+        _service.AvailableTimes?.map(async time => {
+          if (
+            time!.date ==
+            `${new Date().getUTCFullYear()}-${selectedDate.month}-${
+              selectedDate.date
+            }`
+          ) {
+            await time!.slots?.map(slot => {
+              if (slot === selectedSlotTime) {
+                slot!.available = false;
+              }
+            });
           }
         });
-        onUpdateService(_service).then(res => setButtonDisabled(false));
+        onUpdateService(_service).then(res => {
+          setButtonDisabled(false);
+          navigation.navigate('Home');
+        });
       })
       .catch(e => setButtonDisabled(false));
   };

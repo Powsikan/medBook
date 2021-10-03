@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {useContext, useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Service} from '../../API';
+import {Service, UpdateServiceInput} from '../../API';
 import {ServiceContext} from '../../contexts';
 import {BookingContext} from '../../contexts/BookingContext';
 import {Button, Container, Picker, Spinner} from '../shared';
@@ -53,7 +53,7 @@ const ScheduleService = () => {
                 service => service?.slots && service?.slots!.length > 0,
               )[0]
               .AvailableTimes!.some(
-                date => date! == dateConvertor(date).toString(),
+                time => time?.date! == dateConvertor(date).toString(),
               ) == true
           ) {
             const newDates = dates;
@@ -98,17 +98,27 @@ const ScheduleService = () => {
   const updateSchedule = async () => {
     setIsLoading(true);
     console.log('update selected service', selectedService);
-    const _service = selectedService;
+    const _service: UpdateServiceInput = selectedService;
     selectedDays.map(day => {
       if (_service.AvailableTimes && _service.AvailableTimes?.length > 0) {
-        _service.AvailableTimes = [..._service.AvailableTimes, day.dateString];
+        _service.AvailableTimes = [
+          ..._service.AvailableTimes,
+          {
+            slots: _service.slots,
+            date: day.dateString,
+          },
+        ];
       } else {
-        _service.AvailableTimes = [day.dateString];
+        _service.AvailableTimes = [
+          {
+            slots: _service.slots,
+            date: day.dateString,
+          },
+        ];
       }
     });
     await onUpdateService(_service).then(res => {
       if (res) {
-        setIsLoading(false);
         getServices();
       }
     });
@@ -159,8 +169,11 @@ const ScheduleService = () => {
         setFilteredServices(
           services
             .filter(service => service?.slots && service?.slots!.length > 0)
-            .filter(service =>
-              service.AvailableTimes!.filter(date => date! == selectedDate),
+            .filter(
+              service =>
+                service.AvailableTimes!.some(
+                  time => time!.date == selectedDate,
+                ) == false,
             ),
         );
       }
@@ -171,9 +184,9 @@ const ScheduleService = () => {
     const newDates = dates;
     dateArray.map(date => {
       if (
-        chosenService?.AvailableTimes!.filter(
-          date => date! == dateConvertor(date).toString(),
-        )
+        chosenService?.AvailableTimes!.some(
+          time => time!.date == dateConvertor(date).toString(),
+        ) == true
       ) {
         newDates[dateConvertor(date).toString()] = {
           disabled: true,
