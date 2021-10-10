@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useContext, useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from '../../../utils/theme';
@@ -61,17 +62,34 @@ const UpComingBookingItem = props => {
           </Text>
         </View>
       </View>
-      <View>
-        <TouchableOpacity
-          style={[styles.acceptButton, {backgroundColor: COLORS.success}]}
-          onPress={() => {
-            TwoButtonAlert({
-              title: 'Confirm to Start',
-              onOkPress: () => onChangeBookingStatus('BOOKING_SUCCESS'),
-            });
-          }}>
-          <Text style={styles.acceptButtonText}>Complete</Text>
-        </TouchableOpacity>
+      <View style={{display: 'flex', flexDirection: 'row', width: '50%'}}>
+        <View style={{width: '100%'}}>
+          <TouchableOpacity
+            style={[styles.acceptButton, {backgroundColor: COLORS.gray}]}
+            onPress={() => {
+              TwoButtonAlert({
+                title: 'Confirm to Fail',
+                onOkPress: () => onChangeBookingStatus('BOOKING_FAIL'),
+              });
+            }}>
+            <Text style={[styles.acceptButtonText, {color: COLORS.black}]}>
+              Fail
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={{width: '100%'}}>
+          <TouchableOpacity
+            style={[styles.acceptButton, {backgroundColor: COLORS.success}]}
+            onPress={() => {
+              TwoButtonAlert({
+                title: 'Confirm to Success',
+                onOkPress: () => onChangeBookingStatus('BOOKING_SUCCESS'),
+              });
+            }}>
+            <Text style={styles.acceptButtonText}>Complete</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.priceView}>
