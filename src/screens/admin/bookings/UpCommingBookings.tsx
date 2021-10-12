@@ -22,11 +22,11 @@ const UpCommingBookings = ({navigation}: ScreenProp) => {
   const getBookings = async () => {
     await onGetBookings({
       filter: {
-        status: {eq: 'CREATED'},
+        status: {eq: 'MANAGER_ACCEPTED'},
       },
     })
       .then(res => {
-        console.log('new bookings response', res);
+        console.log('upcomming bookings response', res);
         setBookings(res.bookings);
         setApiCallingEnd(true);
       })
@@ -38,7 +38,7 @@ const UpCommingBookings = ({navigation}: ScreenProp) => {
   const onGetUpdatebookings = async () => {
     await onGetBookings({
       filter: {
-        status: {eq: 'CREATED'},
+        status: {eq: 'MANAGER_ACCEPTED'},
       },
     }).then(res => {
       setBookings(res.bookings);
